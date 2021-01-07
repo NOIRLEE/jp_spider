@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<from><input type="text" id="input">
+    <input id="button" type="submit">
+</from>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+
+<script>
+    $("#button").click(function (){
+                var res = document.getElementById('input').value
+                 $.ajax({
+                     type:'GET',
+                     url:'http://localhost:5000/cjjc?key=' + res,
+                     dataType:'json',
+                     success:function (result) {
+                         $('#div1').html(result['result'])
+                     }
+                 });
+                 $.ajax({
+                     type:'GET',
+                     url:'http://localhost:5000/dic?key=' + res,
+                     dataType:'json',
+                     success:function (result) {
+                         $('#div2').html(result['result'])
+                     }
+                 });
+                  $.ajax({
+                     type:'GET',
+                     url:'http://localhost:5000/koto?key=' + res,
+                     dataType:'json',
+                     success:function (result) {
+                         $('#div3').html(result['result'])
+                     }
+                 })
+    })
+</script>
+</body>
+</html>
